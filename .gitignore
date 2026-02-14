@@ -1,0 +1,7 @@
+target/
+node_modules/
+dist/
+cdk.out/
+test-results/
+__pycache__/
+.env

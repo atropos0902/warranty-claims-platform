@@ -1,0 +1,1 @@
+<% response.sendRedirect("claims.action"); %>

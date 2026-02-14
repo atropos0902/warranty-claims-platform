@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 6.5//EN"
+    "https://struts.apache.org/dtds/struts-6.5.dtd">
+<struts>
+  <constant name="struts.devMode" value="false"/>
+  <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+  <package name="claims" extends="struts-default" namespace="/">
+    <action name="claims" class="warranty.legacy.ListClaimsAction">
+      <result>/WEB-INF/jsp/claims.jsp</result>
+    </action>
+    <action name="claim" class="warranty.legacy.ViewClaimAction">
+      <result>/WEB-INF/jsp/claim.jsp</result>
+      <result name="error">/WEB-INF/jsp/error.jsp</result>
+    </action>
+    <action name="newClaim" class="warranty.legacy.NewClaimAction">
+      <result>/WEB-INF/jsp/new.jsp</result>
+    </action>
+    <action name="saveClaim" class="warranty.legacy.SaveClaimAction">
+      <result type="redirectAction">
+        <param name="actionName">claim</param>
+        <param name="claimNo">${claimNo}</param>
+      </result>
+      <result name="input">/WEB-INF/jsp/new.jsp</result>
+    </action>
+  </package>
+</struts>
