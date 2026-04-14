@@ -1,0 +1,55 @@
+spring:
+  application.name: assistant-service
+  datasource:
+    url: ${ASSISTANT_DB_URL:jdbc:mysql://localhost:3306/assistant}
+    username: ${ASSISTANT_DB_USER:assistant}
+    password: ${ASSISTANT_DB_PASSWORD:assistant}
+    hikari.maximum-pool-size: 5
+  threads.virtual.enabled: true
+  ai:
+    # none runs the keyword baseline. bedrock-converse, openai and ollama call a model.
+    model:
+      chat: ${CHAT_MODEL:none}
+      embedding: ${EMBEDDING_MODEL:none}
+      image: none
+      moderation: none
+      audio:
+        speech: none
+        transcription: none
+    bedrock:
+      aws.region: ${AWS_REGION:us-east-1}
+      converse.chat.options:
+        model: ${BEDROCK_MODEL:}
+        temperature: 0
+        max-tokens: 600
+      titan.embedding:
+        model: amazon.titan-embed-text-v2:0
+        input-type: TEXT
+    openai:
+      api-key: ${OPENAI_API_KEY:none}
+      chat.options:
+        model: ${OPENAI_MODEL:gpt-4.1}
+        temperature: 0
+    ollama:
+      base-url: ${OLLAMA_URL:http://localhost:11434}
+      chat.options:
+        model: ${OLLAMA_MODEL:llama3.2:3b}
+        temperature: 0
+server:
+  port: ${PORT:8083}
+  shutdown: graceful
+management:
+  endpoint.health.probes.enabled: true
+  tracing:
+    # Traces are sent only when the endpoint is set.
+    enabled: ${TRACING_ENABLED:false}
+    sampling.probability: 0.1
+  otlp.tracing.endpoint: ${OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+warranty:
+  claims-url: ${CLAIMS_URL:http://localhost:8081}
+  pricing-url: ${PRICING_URL:http://localhost:8082}
+  search-url: ${OPENSEARCH_URL:}
+  reranker-url: ${RERANKER_URL:}
+springdoc:
+  packages-to-scan: warranty.assistant.api
+  default-produces-media-type: application/json

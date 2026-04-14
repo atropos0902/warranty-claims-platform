@@ -1,0 +1,176 @@
+{
+  "components" : {
+    "schemas" : {
+      "Clause" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Draft" : {
+        "properties" : {
+          "claimNo" : {
+            "type" : "string"
+          },
+          "claimVersion" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "clauseId" : {
+            "type" : "string"
+          },
+          "clauseTitle" : {
+            "type" : "string"
+          },
+          "decision" : {
+            "type" : "string"
+          },
+          "model" : {
+            "type" : "string"
+          },
+          "quote" : {
+            "type" : "string"
+          },
+          "reason" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "toolCalls" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "withheldWhy" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Sample" : {
+        "properties" : {
+          "id" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "modelCode" : {
+            "type" : "string"
+          },
+          "notes" : {
+            "maxLength" : 2000,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "repairCode" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "notes" ],
+        "type" : "object"
+      }
+    }
+  },
+  "info" : {
+    "title" : "OpenAPI definition",
+    "version" : "v0"
+  },
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/api/v1/assistant/claims/{claimNo}/draft" : {
+      "post" : {
+        "operationId" : "draft",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "claimNo",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Draft"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "assistant-controller" ]
+      }
+    },
+    "/api/v1/assistant/clauses" : {
+      "get" : {
+        "operationId" : "clauses",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "q",
+          "required" : true,
+          "schema" : {
+            "maxLength" : 2000,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Clause"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "assistant-controller" ]
+      }
+    },
+    "/api/v1/assistant/evaluations/draft" : {
+      "post" : {
+        "operationId" : "evaluate",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Sample"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Draft"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "assistant-controller" ]
+      }
+    }
+  }
+}

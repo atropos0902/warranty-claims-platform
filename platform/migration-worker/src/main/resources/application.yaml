@@ -1,0 +1,34 @@
+spring:
+  application.name: migration-worker
+  task.scheduling.pool.size: 4
+server:
+  port: ${PORT:8084}
+  shutdown: graceful
+management:
+  endpoint.health.probes.enabled: true
+  tracing:
+    # Traces are sent only when the endpoint is set.
+    enabled: ${TRACING_ENABLED:false}
+    sampling.probability: 0.1
+  otlp.tracing.endpoint: ${OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+warranty:
+  claims-url: ${CLAIMS_URL:http://localhost:8081}
+  pricing-url: ${PRICING_URL:http://localhost:8082}
+  legacy:
+    url: ${LEGACY_DB_URL:jdbc:oracle:thin:@//localhost:1521/FREEPDB1}
+    user: ${LEGACY_DB_USER:claims}
+    password: ${LEGACY_DB_PASSWORD:claims}
+  staging:
+    url: ${STAGING_DB_URL:jdbc:mysql://localhost:3306/staging}
+    user: ${STAGING_DB_USER:dms}
+    password: ${STAGING_DB_PASSWORD:dms}
+  copier.enabled: ${COPIER_ENABLED:false}
+  queues:
+    endpoint: ${SQS_ENDPOINT:}
+    replay-url: ${REPLAY_QUEUE_URL:}
+    compare-url: ${COMPARE_QUEUE_URL:}
+  routes:
+    listener-rules: ${ROUTE_LISTENER_RULES:}
+    legacy-target-group: ${LEGACY_TARGET_GROUP:}
+    platform-target-group: ${PLATFORM_TARGET_GROUP:}
+  move-timeout: 5m

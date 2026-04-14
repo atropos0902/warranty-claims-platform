@@ -1,0 +1,10 @@
+Claim:
+{claim}
+
+Repair notes, between the markers:
+<<<NOTES
+{notes}
+NOTES>>>
+
+Policy clauses:
+{clauses}

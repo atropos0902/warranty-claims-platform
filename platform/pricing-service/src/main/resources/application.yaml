@@ -1,0 +1,21 @@
+spring:
+  application.name: pricing-service
+  datasource:
+    url: ${PRICING_DB_URL:jdbc:mysql://localhost:3306/pricing}
+    username: ${PRICING_DB_USER:pricing}
+    password: ${PRICING_DB_PASSWORD:pricing}
+    hikari.maximum-pool-size: 10
+  threads.virtual.enabled: true
+server:
+  port: ${PORT:8082}
+  shutdown: graceful
+management:
+  endpoint.health.probes.enabled: true
+  tracing:
+    # Traces are sent only when the endpoint is set.
+    enabled: ${TRACING_ENABLED:false}
+    sampling.probability: 0.1
+  otlp.tracing.endpoint: ${OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+springdoc:
+  packages-to-scan: warranty.pricing.api
+  default-produces-media-type: application/json

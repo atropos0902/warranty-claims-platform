@@ -1,0 +1,613 @@
+{
+  "components" : {
+    "schemas" : {
+      "ClaimRequest" : {
+        "properties" : {
+          "claimType" : {
+            "pattern" : "[SEG]",
+            "type" : "string"
+          },
+          "dealerCode" : {
+            "maxLength" : 10,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "failureDate" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "laborHours" : {
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "lines" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Line"
+            },
+            "maxItems" : 50,
+            "minItems" : 0,
+            "type" : "array"
+          },
+          "meterHours" : {
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "modelCode" : {
+            "maxLength" : 10,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "notes" : {
+            "maxLength" : 2000,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "purchaseDate" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "repairCode" : {
+            "maxLength" : 10,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "serialNo" : {
+            "maxLength" : 30,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "travelMiles" : {
+            "minimum" : 0,
+            "type" : "number"
+          }
+        },
+        "required" : [ "claimType", "dealerCode", "failureDate", "laborHours", "lines", "modelCode", "purchaseDate", "repairCode", "serialNo" ],
+        "type" : "object"
+      },
+      "ClaimSummary" : {
+        "properties" : {
+          "claimNo" : {
+            "type" : "string"
+          },
+          "dealerCode" : {
+            "type" : "string"
+          },
+          "dealerName" : {
+            "type" : "string"
+          },
+          "groupCode" : {
+            "type" : "string"
+          },
+          "modelCode" : {
+            "type" : "string"
+          },
+          "repairCode" : {
+            "type" : "string"
+          },
+          "serialNo" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "totalPay" : {
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "ClaimVersion" : {
+        "properties" : {
+          "claimNo" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "ClaimView" : {
+        "properties" : {
+          "claimNo" : {
+            "type" : "string"
+          },
+          "claimType" : {
+            "type" : "string"
+          },
+          "dealerCode" : {
+            "type" : "string"
+          },
+          "decisionNote" : {
+            "type" : "string"
+          },
+          "failureDate" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "groupCode" : {
+            "type" : "string"
+          },
+          "laborHours" : {
+            "type" : "number"
+          },
+          "lines" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Line"
+            },
+            "type" : "array"
+          },
+          "meterHours" : {
+            "type" : "number"
+          },
+          "modelCode" : {
+            "type" : "string"
+          },
+          "notes" : {
+            "type" : "string"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/Price"
+          },
+          "purchaseDate" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "repairCode" : {
+            "type" : "string"
+          },
+          "serialNo" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "travelMiles" : {
+            "type" : "number"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "Dealer" : {
+        "properties" : {
+          "dealerCode" : {
+            "type" : "string"
+          },
+          "dealerName" : {
+            "type" : "string"
+          },
+          "groupCode" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Decision" : {
+        "properties" : {
+          "decision" : {
+            "pattern" : "APPROVED|DENIED",
+            "type" : "string"
+          },
+          "note" : {
+            "maxLength" : 500,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "decision" ],
+        "type" : "object"
+      },
+      "Group" : {
+        "properties" : {
+          "groupCode" : {
+            "type" : "string"
+          },
+          "groupName" : {
+            "type" : "string"
+          },
+          "owner" : {
+            "enum" : [ "LEGACY", "MOVING", "PLATFORM", "RETURNING" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Line" : {
+        "properties" : {
+          "partNo" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "qty" : {
+            "format" : "int32",
+            "maximum" : 9999,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "unitCost" : {
+            "minimum" : 0,
+            "type" : "number"
+          }
+        },
+        "required" : [ "partNo", "unitCost" ],
+        "type" : "object"
+      },
+      "OwnerChange" : {
+        "properties" : {
+          "from" : {
+            "enum" : [ "LEGACY", "MOVING", "PLATFORM", "RETURNING" ],
+            "type" : "string"
+          },
+          "to" : {
+            "enum" : [ "LEGACY", "MOVING", "PLATFORM", "RETURNING" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "from", "to" ],
+        "type" : "object"
+      },
+      "Price" : {
+        "properties" : {
+          "coveragePct" : {
+            "type" : "number"
+          },
+          "laborPay" : {
+            "type" : "number"
+          },
+          "partsPay" : {
+            "type" : "number"
+          },
+          "steps" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Step"
+            },
+            "type" : "array"
+          },
+          "totalPay" : {
+            "type" : "number"
+          },
+          "travelPay" : {
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "Step" : {
+        "properties" : {
+          "detail" : {
+            "type" : "string"
+          },
+          "rule" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "TransferState" : {
+        "properties" : {
+          "claims" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ClaimVersion"
+            },
+            "type" : "array"
+          },
+          "owner" : {
+            "enum" : [ "LEGACY", "MOVING", "PLATFORM", "RETURNING" ],
+            "type" : "string"
+          },
+          "waitingEvents" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "waitingRows" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  },
+  "info" : {
+    "title" : "OpenAPI definition",
+    "version" : "v0"
+  },
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/api/v1/claims" : {
+      "get" : {
+        "operationId" : "list",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "status",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "serialNo",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "after",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ClaimSummary"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "claims-controller" ]
+      },
+      "post" : {
+        "operationId" : "file",
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "Idempotency-Key",
+          "required" : true,
+          "schema" : {
+            "maxLength" : 80,
+            "minLength" : 8,
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ClaimRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClaimView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "claims-controller" ]
+      }
+    },
+    "/api/v1/claims/{claimNo}" : {
+      "get" : {
+        "operationId" : "get",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "claimNo",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClaimView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "claims-controller" ]
+      },
+      "put" : {
+        "operationId" : "edit",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "claimNo",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "If-Match",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ClaimRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClaimView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "claims-controller" ]
+      }
+    },
+    "/api/v1/claims/{claimNo}/decision" : {
+      "post" : {
+        "operationId" : "decide",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "claimNo",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "If-Match",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Decision"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClaimView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "claims-controller" ]
+      }
+    },
+    "/api/v1/dealer-groups" : {
+      "get" : {
+        "operationId" : "list_1",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Group"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "groups-controller" ]
+      }
+    },
+    "/api/v1/dealer-groups/dealers" : {
+      "get" : {
+        "operationId" : "dealers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Dealer"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "groups-controller" ]
+      }
+    },
+    "/api/v1/dealer-groups/{code}/owner" : {
+      "post" : {
+        "operationId" : "owner",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/OwnerChange"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "groups-controller" ]
+      }
+    },
+    "/api/v1/dealer-groups/{code}/transfer-state" : {
+      "get" : {
+        "operationId" : "transferState",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TransferState"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "tags" : [ "groups-controller" ]
+      }
+    }
+  }
+}
