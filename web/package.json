@@ -1,0 +1,35 @@
+{
+  "name": "warranty-claims-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "api": "openapi-typescript api/claims.json -o src/api/claims.d.ts && openapi-typescript api/pricing.json -o src/api/pricing.d.ts && openapi-typescript api/assistant.json -o src/api/assistant.d.ts",
+    "dev": "vite",
+    "check": "tsc -b",
+    "test": "vitest run",
+    "build": "tsc -b && vite build",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.87.1",
+    "openapi-fetch": "0.14.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-router": "7.8.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.55.0",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "22.18.0",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "@vitejs/plugin-react": "5.0.2",
+    "jsdom": "26.1.0",
+    "openapi-typescript": "7.9.1",
+    "typescript": "5.9.2",
+    "vite": "7.1.4",
+    "vitest": "3.2.4"
+  }
+}

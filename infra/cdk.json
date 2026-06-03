@@ -1,0 +1,12 @@
+{
+  "app": "npx tsx bin/app.ts",
+  "context": {
+    "cloudFrontPrefixList": "pl-3b927c52",
+    "imageTag": "latest",
+    "githubRepo": "owner/warranty-claims-platform",
+    "domainName": "claims.example.com",
+    "dealerGroups": ["NORTH", "SOUTH", "WEST"],
+    "bedrockModel": "",
+    "@aws-cdk/aws-iam:minimizePolicies": true
+  }
+}
