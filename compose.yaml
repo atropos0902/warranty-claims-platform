@@ -1,0 +1,68 @@
+# Both systems on one machine. Ports: platform 8080, old application 8090.
+name: warranty
+x-service: &service
+  restart: on-failure
+  environment: &env
+    PORT: 8080
+    JAVA_TOOL_OPTIONS: -Xmx160m -XX:+UseSerialGC
+    WARRANTY_AUTH_LOCAL_SECRET: local-only-secret-not-for-any-real-use-01
+    PRICING_URL: http://pricing:8080
+    CLAIMS_URL: http://claims:8080
+    SQS_ENDPOINT: http://sqs:9324
+    REPLAY_QUEUE_URL: http://sqs:9324/000000000000/replay.fifo
+    COMPARE_QUEUE_URL: http://sqs:9324/000000000000/compare.fifo
+services:
+  oracle:
+    image: warranty-legacy-db
+    build: legacy/db
+    environment: { ORACLE_RANDOM_PASSWORD: "true", APP_USER: claims, APP_USER_PASSWORD: claims }
+    ports: ["127.0.0.1:1521:1521"]
+    healthcheck: { test: ["CMD", "healthcheck.sh"], interval: 10s, retries: 60, start_period: 60s }
+  mysql:
+    image: mysql:8.4.6
+    command: --innodb-buffer-pool-size=128M --log-bin-trust-function-creators=1
+    environment: { MYSQL_ROOT_PASSWORD: root }
+    volumes: ["./local/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql:ro"]
+    healthcheck: { test: ["CMD", "mysql", "-h127.0.0.1", "-uclaims", "-pclaims", "-e", "select 1", "claims"], interval: 5s, retries: 40 }
+  sqs:
+    image: softwaremill/elasticmq-native:1.6.14
+    volumes: ["./local/elasticmq.conf:/opt/elasticmq.conf:ro"]
+  legacy:
+    image: warranty/legacy
+    build: legacy/app
+    environment: { LEGACY_DB_URL: "jdbc:oracle:thin:@//oracle:1521/FREEPDB1" }
+    ports: ["127.0.0.1:8090:8080"]
+    depends_on: { oracle: { condition: service_healthy } }
+  pricing:
+    <<: *service
+    image: warranty/pricing
+    build: { context: platform, args: { MODULE: pricing-service } }
+    environment: { <<: *env, PRICING_DB_URL: "jdbc:mysql://mysql/pricing" }
+    ports: ["127.0.0.1:8082:8080"]
+    depends_on: { mysql: { condition: service_healthy } }
+  claims:
+    <<: *service
+    image: warranty/claims
+    build: { context: platform, args: { MODULE: claims-service } }
+    environment: { <<: *env, CLAIMS_DB_URL: "jdbc:mysql://mysql/claims", WARRANTY_AUTH_CLIENT_ID: claims, WARRANTY_AUTH_SCOPES: pricing/quote }
+    ports: ["127.0.0.1:8081:8080"]
+    depends_on: { mysql: { condition: service_healthy } }
+  assistant:
+    <<: *service
+    image: warranty/assistant
+    build: { context: platform, args: { MODULE: assistant-service } }
+    environment: { <<: *env, ASSISTANT_DB_URL: "jdbc:mysql://mysql/assistant", WARRANTY_AUTH_CLIENT_ID: assistant, WARRANTY_AUTH_SCOPES: claims/read pricing/quote, CHAT_MODEL: "${CHAT_MODEL:-none}", OPENAI_API_KEY: "${OPENAI_API_KEY:-none}" }
+    ports: ["127.0.0.1:8083:8080"]
+    depends_on: { mysql: { condition: service_healthy } }
+  migration:
+    <<: *service
+    image: warranty/migration
+    build: { context: platform, args: { MODULE: migration-worker } }
+    environment: { <<: *env, LEGACY_DB_URL: "jdbc:oracle:thin:@//oracle:1521/FREEPDB1", STAGING_DB_URL: "jdbc:mysql://mysql/staging", COPIER_ENABLED: "true", WARRANTY_AUTH_CLIENT_ID: migration, WARRANTY_AUTH_SCOPES: groups/move pricing/compare }
+    ports: ["127.0.0.1:8084:8080"]
+    depends_on: { oracle: { condition: service_healthy }, mysql: { condition: service_healthy }, sqs: { condition: service_started } }
+  web:
+    image: warranty/web
+    build: web
+    environment: { NGINX_ENTRYPOINT_LOCAL_RESOLVERS: "1" }
+    ports: ["127.0.0.1:8080:8080"]

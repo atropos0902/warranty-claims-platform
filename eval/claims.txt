@@ -1,0 +1,121 @@
+# clause|decision|repair notes. A dash means no clause in the manual decides the claim.
+1.2|DENY|Customer bought the extended plan four months after standard warranty ran out and wants the starter covered under it.
+1.2|DENY|Extended contract was signed after the standard period had already ended. Alternator replaced.
+1.4|DENY|Hour meter shows 2,310 on a T40, limit in the table is 2,000. Owner says it is only eighteen months old.
+1.4|DENY|Machine is fourteen months old but the meter is past the limit for the model. Seat switch replaced.
+1.5|APPROVE|Second owner, transfer was registered with us twelve days after the sale. Still inside standard months. Fan clutch failed.
+1.5|DENY|Used machine, new owner never had the transfer registered, sale was five months ago. Lift valve leaking.
+1.5|DENY|Second owner wants to use the first owner's extended warranty for the PTO brake.
+2.1|DENY|Asking for 9.5 hours on the pump job, cap is 4.25. No field engineer was called beforehand.
+2.1|APPROVE|Hours over the cap on the head gasket. Field engineer approved the extra time in writing before we started.
+2.2|DENY|Adding two hours diagnostic time on top of the repair hours for tracing the no-crank.
+2.2|APPROVE|Fault could not be read in the shop, needed a factory diagnostic session online. Claiming one hour for it.
+2.3|DENY|Customer needed it Sunday, techs were on double time. Claiming the overtime difference.
+2.3|DENY|Weekend call out, want the labor paid at our Saturday rate.
+2.4|APPROVE|Two techs for the axle, service manual marks it as a two person lift. Helper hours are half of cap.
+2.4|DENY|Put a helper on the fuel filter housing to get it done faster, claiming both techs.
+2.5|DENY|Same leak back after five weeks, the first time we did not torque the fitting right. Claiming the second repair.
+2.5|DENY|Repeat of our own job from last month, the wiring plug was not seated after the first repair.
+3.1|DENY|Customer had fitted an aftermarket water pump that let go and took the belt with it.
+3.1|DENY|Used a salvaged hydraulic valve from the yard because new was on back order. Claiming the part.
+3.2|DENY|Claiming handling on the control lever the factory sent us free of charge.
+3.2|DENY|Handling ten percent on 2,900 of parts comes to 290, please pay all of it.
+3.3|DENY|Brake linings worn down at 900 hours, customer says too soon.
+3.3|APPROVE|Serpentine belt separated at 22 hours, cords were not bonded from the factory.
+3.3|DENY|Replaced air filter and wiper blades with the 500 hour check.
+3.4|APPROVE|Refrigerant and oil to refill the system after the covered compressor failure.
+3.4|DENY|Charge for rags, brake cleaner and shop supplies on the pump job.
+3.4|APPROVE|Coolant lost when the covered water pump failed, 14 quarts to refill the cooling system.
+3.5|DENY|Factory asked for the failed injector pump back seven weeks ago, we have not returned it, it was scrapped.
+3.5|DENY|Part return was requested, 40 days now and the old controller was not sent in.
+3.6|APPROVE|Fitted a remanufactured transmission, the factory lists that reman unit for the T90.
+3.6|APPROVE|Reman starter installed in place of new, it is on the factory list for this model.
+4.1|APPROVE|Field repair, drove 46 miles out to the farm and back in the service truck.
+4.1|DENY|Tech drove 80 miles to the depot to pick up the parts for this job. Claiming the miles.
+4.1|DENY|Travel to collect parts from the other branch, 35 miles.
+4.2|APPROVE|Tractor would not move under its own power, lowboy hauled it to the workshop.
+4.2|DENY|Customer asked us to haul it in because it was handier than a field visit. Machine drives fine.
+4.2|DENY|Hauled to our shop for our own convenience since the lift was free that day.
+4.3|DENY|Customer rented a loader for a week while this one was down, claiming the rental.
+4.3|DENY|Loaner machine supplied for nine days during the repair.
+5.1|DENY|Hydraulic pump scored, oil full of grit, filter service was missed by 400 hours.
+5.1|DENY|Pump failed from contaminated oil. Owner never changed the hydraulic filter at the interval.
+5.2|APPROVE|Hose leaked at the crimped fitting, no outside damage.
+5.2|DENY|Hose worn through, it had been rubbing on the frame outside its clamps.
+5.2|DENY|Loader hose cut by wire in the field.
+5.2|APPROVE|New lift hose burst right at the crimp on the second day.
+5.3|APPROVE|Rod seal leaking on the bucket cylinder at seven months, rod is straight and clean.
+5.3|DENY|Cylinder rod is bent and pitted and has torn the seals.
+5.4|DENY|Engine overheated and seized, radiator screen was packed with chaff.
+5.4|APPROVE|Thermostat stuck closed and the engine overheated, head warped from that.
+5.4|APPROVE|Water pump bearing failed, coolant stopped moving, engine overheated. Pump and head both replaced.
+5.4|DENY|Ran low on coolant, customer did not top up, piston damage from overheating.
+5.5|DENY|Water in the fuel, all injectors corroded.
+5.5|DENY|Dirt in the fuel tank went through the fuel pump and injectors.
+5.5|APPROVE|Injector three open circuit, failed electrically, fuel is clean.
+5.6|APPROVE|Head gasket failed between two and three. Head flatness measured 0.03 mm, within limit, written up here.
+5.6|APPROVE|Cylinder head gasket leaking coolant, measured the surface and it is in the flatness limit.
+5.7|DENY|Clutch pack burned, customer tows a grain cart with it and rides the pedal.
+5.7|APPROVE|Clutch plates cracked at the hub, friction material still thick.
+5.7|APPROVE|Plates in the clutch pack separated, no sign of heat or riding.
+5.8|APPROVE|Calibrated the transmission after the covered clutch repair.
+5.8|DENY|Customer does not like the shift feel and wants the transmission calibrated.
+5.9|DENY|Mice chewed the wiring harness behind the cab.
+5.9|DENY|Squirrel nest on the engine, wires gnawed through, photos kept.
+5.9|DENY|Rats got the main harness over winter.
+5.10|APPROVE|Corrosion inside the sealed connector at the ECU, ten months old, never washed.
+5.10|DENY|Green pins in the connector, customer pressure washes the engine bay each week.
+5.11|APPROVE|Control module dead, stored fault codes printed and attached to the claim.
+5.11|DENY|Somebody had opened the control module and tried to solder it.
+5.11|DENY|Customer welded on the frame without disconnecting and the module failed.
+5.12|APPROVE|Software update for the published fault on the hydraulic controller, half an hour.
+5.12|DENY|Customer asked to have the latest display software installed, nothing wrong with it.
+5.13|APPROVE|AC compressor locked up internally, replaced and recharged.
+5.13|DENY|Air conditioning weak, recharge only, no leak found.
+5.13|APPROVE|Condenser failed inside, replaced it and the refrigerant.
+5.14|DENY|Stone through the cab door glass.
+5.14|APPROVE|Crack in the rear window starting at the hinge mounting point, no impact mark.
+5.15|DENY|Rear tire sidewall split, claiming a new tire.
+5.15|DENY|Rubber track delaminated on the left side.
+6.1|DENY|Engine has a tuning box turned up forty horsepower, turbo failed.
+6.1|DENY|Customer welded on his own hitch, not factory approved, and the frame cracked at the weld.
+6.2|DENY|Transmission failed, no oil change in 2,200 hours and no maintenance record.
+6.2|DENY|Engine bearing spun, customer skipped the services, nothing to attach.
+6.3|DENY|Rolled over in the ditch, hood and cab damaged.
+6.3|DENY|Machine sat in flood water to the axles, electrics gone.
+6.3|DENY|Caught fire in the barn fire.
+6.4|DENY|Found a dent in the fuel tank on the delivery inspection, it happened on the truck on the way to us.
+6.4|DENY|New unit came off the trailer from the factory with a bent rail, damaged in transport.
+7.1|DENY|Repair was done eleven weeks ago, filing it now, did not ask for an extension.
+7.1|APPROVE|Filing on day 44, asked for and got an extension on day 20.
+7.2|APPROVE|Three months out of coverage, all service done with us since new. Asking goodwill on the pump.
+-|NONE|Customer would like a second key cut for the hired man.
+-|NONE|Operator manual was missing from the cab when the customer looked for it.
+-|NONE|Customer thinks the seat should be taller.
+-|NONE|Asking whether this model can be ordered in another color.
+-|NONE|Customer lost the drawbar pin in the field.
+-|NONE|Floor mat the customer bought elsewhere slides around.
+-|NONE|Customer wants the decals taken off.
+-|NONE|Dealer asks for a copy of last month's statement.
+-|NONE|Customer wants a letter from the factory about the wait.
+-|NONE|Key fob battery was flat, put in a new one.
+-|NONE|Customer asks us to show the new driver how the display works.
+-|NONE|Cleaned the machine before handing it back, two hours.
+-|NONE|Customer is asking for a discount on his next tractor.
+-|NONE|Mounted the customer's own radio in the cab.
+-|NONE|Dealer changed its address and asks for new claim forms.
+-|NONE|Customer wants the horn louder than it is.
+-|NONE|Moved the mirror for the customer, it was in his way.
+-|NONE|Customer wants the old toolbox from his last tractor fitted on this one.
+-|NONE|Asking how many claims we filed this quarter.
+-|NONE|Customer asks for a paint touch up pen.
+-|NONE|Put the bale spear back on for the customer.
+-|NONE|Customer says the neighbor paid less for the same machine.
+-|NONE|Asking for brochures for the field day.
+-|NONE|Customer wants the lights set lower for road driving.
+-|NONE|Set the clock on the display.
+-|NONE|Customer asks for a bigger cup holder.
+-|NONE|Customer wants the insurance papers sent to his bank.
+-|NONE|Dealer asks for training seats for two technicians.
+-|NONE|Adjusted the seat suspension to the customer's weight.
+-|NONE|Customer wants to trade this in and asks what it is worth.

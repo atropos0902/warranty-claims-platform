@@ -1,0 +1,13 @@
+CREATE DATABASE claims;
+CREATE DATABASE pricing;
+CREATE DATABASE assistant;
+CREATE DATABASE staging;
+CREATE USER 'claims'@'%' IDENTIFIED BY 'claims';
+CREATE USER 'pricing'@'%' IDENTIFIED BY 'pricing';
+CREATE USER 'assistant'@'%' IDENTIFIED BY 'assistant';
+CREATE USER 'dms'@'%' IDENTIFIED BY 'dms';
+GRANT ALL ON claims.* TO 'claims'@'%';
+GRANT ALL ON staging.* TO 'claims'@'%';
+GRANT ALL ON pricing.* TO 'pricing'@'%';
+GRANT ALL ON assistant.* TO 'assistant'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON staging.* TO 'dms'@'%';
